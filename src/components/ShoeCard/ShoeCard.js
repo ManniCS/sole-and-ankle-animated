@@ -78,48 +78,23 @@ const Wrapper = styled.article`
 `;
 
 const ImageWrapper = styled.div`
-  /* --top: 0.66;
-  --left: 55%;
-  --imgHeight: 274.64px; */
   border-radius: 16px 16px 4px 4px;
   overflow: hidden;
-
-  /* &::before {  
-    --width: 2px;
-    --height: 100px;
-    content: ' ';
-    background: red;
-    border-radius: 50%;
-    width: var(--width);
-    height: var(--height);
-    position: absolute; 
-    top: calc(var(--top) * var(--imgHeight) - var(--height) / 2);
-    left: calc(var(--left) - var(--width) / 2);
-  }
-
-  &::after {  
-    --width: 100px;
-    --height: 2px;
-    content: ' ';
-    background: red;
-    border-radius: 50%;
-    width: var(--width);
-    height: var(--height);
-    position: absolute; 
-    top: calc(var(--top) * var(--imgHeight) - var(--height) / 2);
-    left: calc(var(--left) - var(--width) / 2);
-  } */
 `;
 
 const Image = styled.img`
   width: 100%;
   display: block;
   transition: transform 700ms;
+  will-change: transform;
 
-  &:hover { 
-    transform: scale(1.08);
-    transition: transform 170ms;
-    transform-origin: 55% 66%;
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) { 
+    ${Link}:hover &, 
+    ${Link}:focus { 
+      transform: scale(1.08);
+      transition: transform 170ms;
+      transform-origin: 55% 66%;
+    }
   }
 `;
 
