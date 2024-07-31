@@ -37,10 +37,10 @@ const ShoeCard = ({
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
           {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
-          {variant === 'new-release' && (
-            <NewFlag>Just released!</NewFlag>
-          )}
         </ImageWrapper>
+        {variant === 'new-release' && (
+          <NewFlag>Just released!</NewFlag>
+        )}
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
@@ -73,15 +73,54 @@ const Link = styled.a`
   color: inherit;
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+  position: relative;
+`;
 
 const ImageWrapper = styled.div`
-  position: relative;
+  /* --top: 0.66;
+  --left: 55%;
+  --imgHeight: 274.64px; */
+  border-radius: 16px 16px 4px 4px;
+  overflow: hidden;
+
+  /* &::before {  
+    --width: 2px;
+    --height: 100px;
+    content: ' ';
+    background: red;
+    border-radius: 50%;
+    width: var(--width);
+    height: var(--height);
+    position: absolute; 
+    top: calc(var(--top) * var(--imgHeight) - var(--height) / 2);
+    left: calc(var(--left) - var(--width) / 2);
+  }
+
+  &::after {  
+    --width: 100px;
+    --height: 2px;
+    content: ' ';
+    background: red;
+    border-radius: 50%;
+    width: var(--width);
+    height: var(--height);
+    position: absolute; 
+    top: calc(var(--top) * var(--imgHeight) - var(--height) / 2);
+    left: calc(var(--left) - var(--width) / 2);
+  } */
 `;
 
 const Image = styled.img`
   width: 100%;
-  border-radius: 16px 16px 4px 4px;
+  display: block;
+  transition: transform 700ms;
+
+  &:hover { 
+    transform: scale(1.08);
+    transition: transform 170ms;
+    transform-origin: 55% 66%;
+  }
 `;
 
 const Row = styled.div`
