@@ -32,16 +32,15 @@ const Wrapper = styled.a`
   } 
 `;
 
-const duration = '500ms';
-
 const Body = styled.span`
   transform: translateY(var(--translate-from));
 
   ${Wrapper}:hover & {
     transform: translateY(var(--translate-to));
-    transition: transform ${duration};
+    transition: transform 250ms;
   }
-  transition: transform ${duration};
+  transition: transform 500ms;
+  will-change: transform;
 `
 
 const DefaultBody = styled(Body)`
