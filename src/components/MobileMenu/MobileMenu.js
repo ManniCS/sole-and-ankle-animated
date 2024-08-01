@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled, {keyframes} from 'styled-components/macro';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 
 import { QUERIES, WEIGHTS } from '../../constants';
@@ -38,16 +38,23 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   );
 };
 
-const Overlay = styled(DialogOverlay)`
-  @keyframes fade-in { 
-    from { 
-      opacity: 0;
-    }
-    to { 
-      opacity: 1;
-    }
+const fadeIn = keyframes`
+  from { 
+    opacity: 0;
   }
-
+  to { 
+    opacity: 1;
+  }
+`
+const slideIn = keyframes`
+  from { 
+    transform: translateX(100%);
+  }
+  to { 
+    transform: translateX(0%);
+  }
+`
+const Overlay = styled(DialogOverlay)`
   position: fixed;
   top: 0;
   left: 0;
@@ -57,45 +64,27 @@ const Overlay = styled(DialogOverlay)`
   display: flex;
   justify-content: flex-end;
 
-  animation: fade-in 250ms;
+  animation: ${fadeIn} 250ms;
 `;
 
 const Content = styled(DialogContent)`
-  @keyframes slide-in { 
-    from { 
-      transform: translateX(100%);
-    }
-    to { 
-      transform: translateX(0%);
-    }
-  }
-
   background: white;
   width: 300px;
   height: 100%;
 
   @media (prefers-reduced-motion: no-preference) { 
-    animation: slide-in 250ms 250ms backwards;
+    animation: ${slideIn} 250ms 250ms backwards;
   }
 `;
 
 const AnimationWrapper = styled.div`
-  @keyframes fade-in { 
-    from { 
-      opacity: 0;
-    }
-    to { 
-      opacity: 1;
-    }
-  }
-
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 24px 32px;
 
-  animation: fade-in 500ms 450ms backwards;
+  animation: ${fadeIn} 500ms 450ms backwards;
 `
 
 const CloseButton = styled(UnstyledButton)`
