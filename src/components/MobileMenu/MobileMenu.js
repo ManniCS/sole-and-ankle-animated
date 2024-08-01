@@ -9,9 +9,6 @@ import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
-// const navLinks = {"href": "/sale", "displayName": "Sale"}
-// const subLinks = {"href": "/sale", "displayName": "Sale"}
-
 const MobileMenu = ({ isOpen, onDismiss }) => {
   return (
     <Overlay isOpen={isOpen} onDismiss={onDismiss}>
@@ -142,12 +139,9 @@ const Footer = styled.footer`
 `;
 
 const SubLink = styled.a`
-  /* --duration: calc(10ms + var(--index) * 100ms); */
   color: var(--color-gray-700);
   font-size: 0.875rem;
   text-decoration: none;
-
-  /* animation: fade-in var(--duration) slide-in var(--duration); */
 `;
 
 export default MobileMenu;
