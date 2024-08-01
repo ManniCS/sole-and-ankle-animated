@@ -35,9 +35,11 @@ const Wrapper = styled.a`
 const Body = styled.span`
   transform: translateY(var(--translate-from));
 
-  ${Wrapper}:hover & {
-    transform: translateY(var(--translate-to));
-    transition: transform 250ms;
+  @media (prefers-reduced-motion: no-preference) { 
+    ${Wrapper}:hover & {
+      transform: translateY(var(--translate-to));
+      transition: transform 250ms;
+    }
   }
   transition: transform 500ms;
   will-change: transform;
