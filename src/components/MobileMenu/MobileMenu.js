@@ -57,9 +57,7 @@ const Overlay = styled(DialogOverlay)`
   display: flex;
   justify-content: flex-end;
 
-  @media (prefers-reduced-motion: no-preference) { 
-    animation: fade-in 250ms;
-  }
+  animation: fade-in 250ms;
 `;
 
 const Content = styled(DialogContent)`
@@ -97,9 +95,7 @@ const AnimationWrapper = styled.div`
   flex-direction: column;
   padding: 24px 32px;
 
-  @media (prefers-reduced-motion: no-preference) { 
-    animation: fade-in 500ms 450ms backwards;
-  }
+  animation: fade-in 500ms 450ms backwards;
 `
 
 const CloseButton = styled(UnstyledButton)`
