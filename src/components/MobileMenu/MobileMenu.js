@@ -9,34 +9,48 @@ import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
+// const navLinks = {"href": "/sale", "displayName": "Sale"}
+// const subLinks = {"href": "/sale", "displayName": "Sale"}
+
 const MobileMenu = ({ isOpen, onDismiss }) => {
   return (
     <Overlay isOpen={isOpen} onDismiss={onDismiss}>
       <Content aria-label="Menu">
-        <CloseButton onClick={onDismiss}>
-          <Icon id="close" />
-          <VisuallyHidden>Dismiss menu</VisuallyHidden>
-        </CloseButton>
-        <Filler />
-        <Nav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
-        </Nav>
-        <Footer>
-          <SubLink href="/terms">Terms and Conditions</SubLink>
-          <SubLink href="/privacy">Privacy Policy</SubLink>
-          <SubLink href="/contact">Contact Us</SubLink>
-        </Footer>
+        <AnimationWrapper>
+          <CloseButton onClick={onDismiss}>
+            <Icon id="close" />
+            <VisuallyHidden>Dismiss menu</VisuallyHidden>
+          </CloseButton>
+          <Filler />
+          <Nav>
+            <NavLink href="/sale">Sale</NavLink>
+            <NavLink href="/new">New&nbsp;Releases</NavLink>
+            <NavLink href="/men">Men</NavLink>
+            <NavLink href="/women">Women</NavLink>
+            <NavLink href="/kids">Kids</NavLink>
+            <NavLink href="/collections">Collections</NavLink>
+          </Nav>
+          <Footer>
+            <SubLink href="/terms">Terms and Conditions</SubLink>
+            <SubLink href="/privacy">Privacy Policy</SubLink>
+            <SubLink href="/contact">Contact Us</SubLink>
+          </Footer>
+        </AnimationWrapper>
       </Content>
     </Overlay>
   );
 };
 
 const Overlay = styled(DialogOverlay)`
+  @keyframes fade-in { 
+    from { 
+      opacity: 0;
+    }
+    to { 
+      opacity: 1;
+    }
+  }
+
   position: fixed;
   top: 0;
   left: 0;
@@ -45,16 +59,51 @@ const Overlay = styled(DialogOverlay)`
   background: var(--color-backdrop);
   display: flex;
   justify-content: flex-end;
+
+  @media (prefers-reduced-motion: no-preference) { 
+    animation: fade-in 250ms;
+  }
 `;
 
 const Content = styled(DialogContent)`
+  @keyframes slide-in { 
+    from { 
+      transform: translateX(100%);
+    }
+    to { 
+      transform: translateX(0%);
+    }
+  }
+
   background: white;
   width: 300px;
   height: 100%;
-  padding: 24px 32px;
+
+  @media (prefers-reduced-motion: no-preference) { 
+    animation: slide-in 250ms 250ms backwards;
+  }
+`;
+
+const AnimationWrapper = styled.div`
+  @keyframes fade-in { 
+    from { 
+      opacity: 0;
+    }
+    to { 
+      opacity: 1;
+    }
+  }
+
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-`;
+  padding: 24px 32px;
+
+  @media (prefers-reduced-motion: no-preference) { 
+    animation: fade-in 500ms 450ms backwards;
+  }
+`
 
 const CloseButton = styled(UnstyledButton)`
   position: absolute;
@@ -93,9 +142,12 @@ const Footer = styled.footer`
 `;
 
 const SubLink = styled.a`
+  /* --duration: calc(10ms + var(--index) * 100ms); */
   color: var(--color-gray-700);
   font-size: 0.875rem;
   text-decoration: none;
+
+  /* animation: fade-in var(--duration) slide-in var(--duration); */
 `;
 
 export default MobileMenu;
